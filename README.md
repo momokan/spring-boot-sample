@@ -8,3 +8,5 @@
 * eclipse で開発する場合に properties ファイルやテンプレートを eclipse プロジェクトの classpath から探すため、eclipse 上でプロジェクトを refresh しないと反映されない。
   これを回避するため、ClassLoader をファイルシステムから読み込む自作 ClassLoader に差し替える
 
+  http://stackoverflow.com/questions/3801714/how-to-set-my-custom-class-loader-to-be-the-default
+
