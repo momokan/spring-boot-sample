@@ -15,6 +15,6 @@ import org.springframework.data.repository.query.Param;
  */
 public interface WordRepository extends CrudRepository<Word, Long> {
 
-	public List<Word> findWordsByContent(@Param("content") String content);
+	public List<Word> findWordsByType(@Param("type") Integer type);
 
 }

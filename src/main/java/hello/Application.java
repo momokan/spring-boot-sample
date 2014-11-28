@@ -7,8 +7,13 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+//	読み込む properties ファイルを変更する
+//@PropertySources(value = {@PropertySource("classpath:application2.properties")})
+//@PropertySource("classpath:application.properties")
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan
