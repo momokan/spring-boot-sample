@@ -1,4 +1,4 @@
-package hello;
+package hello.controller;
 
 import hello.data.entity.Word;
 import hello.data.entity.repository.WordRepository;
