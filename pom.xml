@@ -58,6 +58,13 @@
       <version>1.8.0.10</version>
     </dependency>
 
+    <!-- Eclipse Resource hot deploy -->
+    <dependency>
+      <groupId>net.chocolapod</groupId>
+      <artifactId>eclipseprojectloader</artifactId>
+      <version>0.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -66,8 +73,8 @@
       <resource>
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
-	  </resource>
-	</resources>
+      </resource>
+    </resources>
 
     <plugins>
       <plugin>

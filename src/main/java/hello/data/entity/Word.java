@@ -7,7 +7,7 @@ import javax.persistence.Id;
 public class Word {
 
 	@Id
-	private Long		id;
+	private Long	id;
 	private String	content;
 	private Integer	type;
 
