@@ -1,7 +1,7 @@
 package hello.controller;
 
 import hello.data.entity.Word;
-import hello.data.entity.repository.WordRepository;
+import hello.data.repository.WordRepository;
 
 import java.util.List;
 
