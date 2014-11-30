@@ -16,7 +16,7 @@
       </tr>
     </table>
 
-    <form action="#" th:action="@{/words/}" th:object="${word}" method="post">
+    <form action="#" th:if="${word}" th:action="@{/words/}" th:object="${word}" method="post">
       <table>
         <tr>
           <td>Content:</td>

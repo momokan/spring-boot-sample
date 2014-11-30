@@ -2,6 +2,7 @@ package hello.data.repository;
 
 import hello.data.entity.Word;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -15,5 +16,8 @@ public interface WordRepository extends CrudRepository<Word, Long> {
 
 	public Iterable<Word> findWordsByType(@Param("type") Integer type);
 	public Iterable<Word> findWordsByContent(@Param("content") String content);
+	
+	@Query("SELECT w FROM #{#entityName} w WHERE content LIKE %:keyword%")
+	public Iterable<Word> findLikeContent(@Param("keyword") String keyword);
 
 }

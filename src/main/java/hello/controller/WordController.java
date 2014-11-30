@@ -46,6 +46,15 @@ public class WordController extends WebMvcConfigurerAdapter {
 		return "hello/words/index";
 	}
 
+	@RequestMapping(value="/words/{keyword}/search", method=RequestMethod.GET)
+	public String search(@PathVariable String keyword, Model model) {
+		Iterable<Word>	words = wordRepository.findLikeContent(keyword);
+		
+		model.addAttribute("words", words);
+
+		return "hello/words/index";
+	}
+
 	@RequestMapping(value="/words", method=RequestMethod.POST)
 	public String create(@Valid Word word, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -60,7 +69,7 @@ public class WordController extends WebMvcConfigurerAdapter {
 
 		return "redirect:/words";
 	}
-	
+
 	private void listWords(Model model) {
 		//	DB 内のデータを一覧表示する
 		Iterable<Word>	words = wordRepository.findAll();
