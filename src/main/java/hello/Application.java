@@ -1,20 +1,16 @@
 package hello;
 
-import java.util.Arrays;
+import hello.config.DataSourceConfig;
 
-import javax.sql.DataSource;
+import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 //	読み込む properties ファイルを変更する
 //@PropertySources(value = {@PropertySource("classpath:application2.properties")})
@@ -23,29 +19,9 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 @Configuration
 @ComponentScan
 @EnableJpaRepositories
+@Import({DataSourceConfig.class})
 public class Application {
 
-	/**
-	 *	データソースを設定する
-	 *	未設定なら自動でクラスパス上の組み込みデータベースが利用される。
-	 */
-//	@ConfigurationProperties(prefix = DataSourceAutoConfiguration.CONFIGURATION_PREFIX)
-	@Bean
-	public DataSource dataSource() {
-		//	組み込みデータベースでなく、外部データベースを利用する
-		//	application.properties に spring.jpa.hibernate.ddl-auto=none を記載し、hibernate による DB 初期化を無効化すること
-		//	※ ddl-auto : none を設定すると hibernate はテーブルすら作らないので注意
-		DataSource	dataSource = DataSourceBuilder
-			.create(Application.class.getClassLoader())
-			.driverClassName("org.hsqldb.jdbcDriver")
-			.url("jdbc:hsqldb:databaseDir/database1")
-			.username("user1")
-			.password("password1")
-			.build();
-
-		return dataSource;
-	}
-	
 	/**
 	 *	メッセージリソースを UTF-8 で読み込む
 	 */
