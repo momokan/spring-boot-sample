@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 //	読み込む properties ファイルを変更する
@@ -19,6 +17,23 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan
 @EnableJpaRepositories
 public class Application {
+
+	/**
+	 *	メッセージリソースを UTF-8 で読み込む
+	 */
+	/*
+	@Bean(name = "messageSource")
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+
+		//	properties ファイルを指定する
+		messageSource.setBasename("classpath:myMessages");
+		//	properties の文字コードを指定する
+		messageSource.setDefaultEncoding("UTF-8");
+
+		return messageSource;
+	}
+	*/
 
 	/**
 	 *	WEB アプリの実行クラス（Tomcat 込み）
@@ -34,7 +49,7 @@ public class Application {
 
 		System.out.println("Let's inspect the beans provided by Spring Boot:");
 
-		String[]				beanNames = ctx.getBeanDefinitionNames();
+		String[]			beanNames = ctx.getBeanDefinitionNames();
 
 		Arrays.sort(beanNames);
 		for (String beanName : beanNames) {

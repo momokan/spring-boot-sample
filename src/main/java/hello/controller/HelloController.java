@@ -26,7 +26,7 @@ public class HelloController {
 	@RequestMapping("/")
 	public String index(@RequestParam(value="name", required=false, defaultValue="User") String name, Model model) {
 		//	データベースからレコードを取り出す
-		List<Word>		words = wordRepository.findWordsByType(1);
+		Iterable<Word>		words = wordRepository.findWordsByType(1);
 
 		//	テンプレートに変数を渡す
 		model.addAttribute("name", name);
