@@ -2,7 +2,7 @@
 
 なるべく最小構成で動かせるサンプルにする。
 
-## spring-boot-sample
+## spring-boot
 
 Spring Boot 本来の構成でのサンプル。  
 構成要素は  
