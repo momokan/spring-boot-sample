@@ -84,7 +84,7 @@
     <dependency>
       <groupId>net.chocolapod</groupId>
       <artifactId>eclipseprojectloader</artifactId>
-      <version>0.2-SNAPSHOT</version>
+      <version>0.3-SNAPSHOT</version>
     </dependency>
 
   </dependencies>

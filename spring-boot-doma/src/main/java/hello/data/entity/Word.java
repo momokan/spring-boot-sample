@@ -1,5 +1,7 @@
 package hello.data.entity;
 
+import hello.validator.annotation.DuplicateWord;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -19,6 +21,7 @@ public class Word {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long	id;
 
+	@DuplicateWord
 	@NotNull				//	必須として規定する
 	@Size(min=2, max=30)	// 文字列の長さを規定する
 	private String	content;
