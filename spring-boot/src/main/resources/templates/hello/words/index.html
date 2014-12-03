@@ -8,11 +8,13 @@
         <td>ID</td>
         <td>Content</td>
         <td>Type</td>
+        <td></td>
       </tr>
       <tr th:each="word : ${words}">
         <td th:text="${word.id}">6</td>
         <td th:text="${word.content}">Dummy</td>
         <td th:text="${word.type}">1</td>
+        <td><a href="#" th:href="@{/word/{content}(content=${word.content})}">Show</a></td>
       </tr>
     </table>
 
