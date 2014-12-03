@@ -8,10 +8,12 @@ import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 //	読み込む properties ファイルを変更する
@@ -25,22 +27,26 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Application {
 
 	/**
-	 *	メッセージリソースを UTF-8 で読み込む
+	 *	エラーメッセージ用の MessageSource を登録する
 	 */
-	/*
-	@Bean(name = "messageSource")
-	public MessageSource messageSource() {
+	@Bean()
+	public MessageSource errorMessageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 
 		//	properties ファイルを指定する
-		messageSource.setBasename("classpath:myMessages");
+		messageSource.setBasename("classpath:errorMessages");
+
 		//	properties の文字コードを指定する
 		messageSource.setDefaultEncoding("UTF-8");
 
+		//	propteries または該当するメッセージが見つからない場合に、例外を投げずにキーを返す
+		messageSource.setUseCodeAsDefaultMessage(true);
+
+		//	メッセージリソースのキャッシュを無効にする
+		messageSource.setCacheSeconds(0);
+
 		return messageSource;
 	}
-	*/
-
 
 	/**
 	 *	BeanContainer を bean として登録する

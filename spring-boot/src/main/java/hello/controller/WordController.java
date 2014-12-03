@@ -2,10 +2,10 @@ package hello.controller;
 
 import hello.data.entity.Word;
 import hello.data.repository.WordRepository;
+import hello.exception.HelloException;
 import hello.util.HibernateMessageDecoder;
 
-import java.io.UnsupportedEncodingException;
-import java.util.List;
+import java.util.Iterator;
 
 import javax.validation.Valid;
 
@@ -13,12 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Controller
@@ -36,10 +33,17 @@ public class WordController extends WebMvcConfigurerAdapter {
 	}
 
 	@RequestMapping(value="/word/{content}", method=RequestMethod.GET)
-	public String show(@PathVariable String content, Model model) {
+	public String show(@PathVariable String content, Model model) throws HelloException {
 		listWords(model);
 		
-		Word	word = wordRepository.findWordsByContent(content).iterator().next();
+		//	指定の Word を取り出す
+		//	ない場合はエラーを投げる
+		Iterator<Word>		wordsIterator = wordRepository.findWordsByContent(content).iterator();
+		
+		if (!wordsIterator.hasNext()) {
+			throw new HelloException();
+		}
+		Word					word = wordsIterator.next();
 		
 		model.addAttribute("word", word);
 		
