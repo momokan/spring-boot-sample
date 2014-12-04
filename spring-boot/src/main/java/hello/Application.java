@@ -2,6 +2,7 @@ package hello;
 
 import hello.config.BeanLoader;
 import hello.config.DataSourceConfig;
+import hello.util.template.TemplateLogic;
 
 import java.util.Arrays;
 
@@ -47,13 +48,21 @@ public class Application {
 
 		return messageSource;
 	}
+	
+	/**
+	 *	テンプレート用ロジックの TemplateLogic を Bean として登録する
+	 */
+	@Bean
+	public TemplateLogic templateLogic() {
+		return new TemplateLogic();
+	}
 
 	/**
-	 *	BeanContainer を bean として登録する
+	 *	BeanContainer を Bean として登録する
 	 */
 	@Bean
 	public BeanLoader beanContainer() {
-		//	メソッド名を ID として bean が取得できる
+		//	メソッド名を ID として Bean が取得できる
 		return new BeanLoader();
 	}
 	
