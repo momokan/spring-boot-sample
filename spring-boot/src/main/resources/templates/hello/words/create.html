@@ -18,9 +18,6 @@
           <td><input type="text" th:field="*{type}" /></td>
           <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</td>
         </tr>
-        <tr>
-          <td><button type="submit">Submit</button></td>
-        </tr>
         </block>
         <tr>
           <td>Memo:</td>
@@ -28,19 +25,22 @@
           <td th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}">Memo Error</td>
         </tr>
         <tr>
-          <td>Extra:</td>
+          <td>Relational Word:</td>
           <td><input type="text" th:field="*{relationalWord}" /></td>
           <td th:if="${#fields.hasErrors('relationalWord')}" th:errors="*{relationalWord}">RelationaWord Error</td>
         </tr>
         <tr>
-          <td>Extra:</td>
+          <td>Relational Word:</td>
           <td><input type="text" th:field="*{relationalWord}" /></td>
           <td th:if="${#fields.hasErrors('relationalWord')}" th:errors="*{relationalWord}">RelationaWord Error</td>
         </tr>
         <tr>
-          <td>Extra:</td>
+          <td>Relational Word:</td>
           <td><input type="text" th:field="*{relationalWord}" /></td>
           <td th:if="${#fields.hasErrors('relationalWord')}" th:errors="*{relationalWord}">RelationaWord Error</td>
+        </tr>
+        <tr>
+          <td><button type="submit">Submit</button></td>
         </tr>
       </table>
     </form>
