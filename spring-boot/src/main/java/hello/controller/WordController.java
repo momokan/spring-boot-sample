@@ -26,6 +26,9 @@ public class WordController extends WebMvcConfigurerAdapter {
 	@Autowired
 	protected WordRepository wordRepository;
 
+	/**
+	 *	Word の一覧画面
+	 */
 	@RequestMapping(value="/words", method=RequestMethod.GET)
 	public String index(Word word, Model model) {
 		listWords(model);
@@ -33,6 +36,9 @@ public class WordController extends WebMvcConfigurerAdapter {
 		return "hello/words/index";
 	}
 
+	/**
+	 *	Word の詳細画面
+	 */
 	@RequestMapping(value="/word/{content}", method=RequestMethod.GET)
 	public String show(@PathVariable String content, Model model) throws HelloException {
 		listWords(model);
@@ -51,6 +57,9 @@ public class WordController extends WebMvcConfigurerAdapter {
 		return "hello/words/index";
 	}
 
+	/**
+	 *	Word の検索結果画面
+	 */
 	@RequestMapping(value="/words/{keyword}/search", method=RequestMethod.GET)
 	public String search(@PathVariable String keyword, Model model) {
 		Iterable<Word>	words = wordRepository.findLikeContent(keyword);

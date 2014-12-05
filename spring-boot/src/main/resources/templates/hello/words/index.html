@@ -20,22 +20,6 @@
       </tr>
     </table>
 
-    <form action="#" th:if="${word}" th:action="@{/words/}" th:object="${word}" method="post">
-      <table>
-        <tr>
-          <td>Content:</td>
-          <td><input type="text" th:field="*{content}" /></td>
-          <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Content Error</td>
-        </tr>
-        <tr>
-          <td>Type:</td>
-          <td><input type="text" th:field="*{type}" /></td>
-          <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</td>
-        </tr>
-        <tr>
-          <td><button type="submit">Submit</button></td>
-        </tr>
-      </table>
-    </form>
+    <div><a href="#" th:href="@{/words/create}">New</a></div>
   </body>
 </html>
