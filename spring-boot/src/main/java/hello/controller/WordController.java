@@ -3,6 +3,7 @@ package hello.controller;
 import hello.data.entity.Word;
 import hello.data.repository.WordRepository;
 import hello.exception.HelloException;
+import hello.form.WordForm;
 import hello.util.HibernateMessageDecoder;
 
 import java.util.Iterator;
@@ -58,7 +59,39 @@ public class WordController extends WebMvcConfigurerAdapter {
 
 		return "hello/words/index";
 	}
+	
+	/**
+	 *	Word の作成画面
+	 */
+	@RequestMapping(value="/words/create", method=RequestMethod.GET)
+	public String createForm(WordForm wordForm, Model model) {
+		model.addAttribute("wordForm", wordForm);
 
+		return "hello/words/create";
+	}
+
+	/**
+	 *	Word の作成
+	 */
+	@RequestMapping(value="/words/create", method=RequestMethod.POST)
+	public String create(@Valid WordForm wordForm, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			HibernateMessageDecoder.decodeObjectErrors(bindingResult);
+
+			listWords(model);
+
+			return "hello/words/create";
+		}
+
+		//	メモは使わない
+		//	関連ワードも使わない
+		
+		wordRepository.save(wordForm.getWord());
+
+		return "redirect:/words";
+	}
+
+	/*
 	@RequestMapping(value="/words", method=RequestMethod.POST)
 	public String create(@Valid Word word, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -73,6 +106,7 @@ public class WordController extends WebMvcConfigurerAdapter {
 
 		return "redirect:/words";
 	}
+	*/
 
 	private void listWords(Model model) {
 		//	DB 内のデータを一覧表示する
