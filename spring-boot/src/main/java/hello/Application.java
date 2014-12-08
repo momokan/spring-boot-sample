@@ -6,6 +6,8 @@ import hello.util.template.TemplateLogic;
 
 import java.util.Arrays;
 
+import javax.servlet.Filter;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 //	読み込む properties ファイルを変更する
 //@PropertySources(value = {@PropertySource("classpath:application2.properties")})
@@ -64,6 +67,20 @@ public class Application {
 	public BeanLoader beanContainer() {
 		//	メソッド名を ID として Bean が取得できる
 		return new BeanLoader();
+	}
+	
+	/**
+	 *	CharacterEncodingFilter を bean として登録する
+	 */
+	@Bean
+	public Filter characterEncodingFilter() {
+		CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		
+		//	HTTP リクエストパラメーターの文字コードを設定する 
+		filter.setEncoding("UTF-8");
+		filter.setForceEncoding(true);
+
+		return filter;
 	}
 	
 	/**
