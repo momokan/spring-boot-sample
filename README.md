@@ -21,3 +21,8 @@ Spring Boot に DB まわりで Doma を採用したサンプル。
  * バリデーション: Hibernate
  * テンプレートエンジン: Thymeleaf
 
+## TODO
+
+ * bean のスコープ設定
+ * クラス指定での bean のとりだし
+
