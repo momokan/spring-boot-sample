@@ -1,5 +1,6 @@
 package hello;
 
+import hello.config.BeanLoader;
 import hello.config.DataSourceConfig;
 
 import java.util.Arrays;
@@ -7,6 +8,7 @@ import java.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -39,6 +41,15 @@ public class Application {
 	}
 	*/
 
+	/**
+	 *	BeanContainer を Bean として登録する
+	 */
+	@Bean
+	public BeanLoader beanContainer() {
+		//	メソッド名を ID として Bean が取得できる
+		return new BeanLoader();
+	}
+	
 	/**
 	 *	WEB アプリの実行クラス（Tomcat 込み）
 	 *	プロジェクトをパッケージするとこのクラスが実行される war が作られる。
