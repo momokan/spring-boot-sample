@@ -1,6 +1,6 @@
 package hello.config;
 
-import hello.Application;
+import hello.framework.DomaTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -8,19 +8,19 @@ import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.NoCacheSqlFileRepository;
 import org.seasar.doma.jdbc.SqlFileRepository;
 import org.seasar.doma.jdbc.dialect.Dialect;
-import org.seasar.doma.jdbc.dialect.HsqldbDialect;
 import org.seasar.doma.jdbc.dialect.SqliteDialect;
+import org.seasar.doma.jdbc.tx.LocalTransaction;
+import org.seasar.doma.jdbc.tx.LocalTransactionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -48,7 +48,7 @@ public class DataSourceConfig {
 	 *	未設定なら自動でクラスパス上の組み込みデータベースが利用される。
 	 */
 	@Bean
-	public DataSource dataSource() {
+	public LocalTransactionDataSource dataSource() {
 		//	組み込みデータベースでなく、外部データベースを利用する
 		//	外部データベースがすでにある場合は、application.properties に spring.jpa.hibernate.ddl-auto=none を記載し、hibernate による DB 初期化を無効化すること
 		//	※ ddl-auto : none を設定すると hibernate はテーブルすら作らないので注意
@@ -70,15 +70,19 @@ public class DataSourceConfig {
 		dataSource.setUrl(String.format("jdbc:sqlite:%s/%s.db", datadir, database));
 		dataSource.setUsername(user);
 		dataSource.setPassword(password);
-
+		
 		// TransactionAwareDataSourceProxy でラッピングしないと Doma 側でコネクションがおかしくなる
-		return new TransactionAwareDataSourceProxy(dataSource);
+//		return new TransactionAwareDataSourceProxy(dataSource);
+		return new LocalTransactionDataSource(dataSource);
 	}
 
+	//	使ってる？？
+	/*
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());
 	}
+	*/
 
 	@Bean
 	public Dialect dialect() {
@@ -89,6 +93,11 @@ public class DataSourceConfig {
 	@Bean
 	public SqlFileRepository sqlFileRepository() {
 		return new NoCacheSqlFileRepository();
+	}
+	
+	@Bean
+	public DomaTransactionManager domaTransactionManager() {
+		return new DomaTransactionManager();
 	}
 
 	@Bean
@@ -111,6 +120,8 @@ public class DataSourceConfig {
 			public SqlFileRepository getSqlFileRepository() {
 				return sqlFileRepository();
 			}
+
 		};
 	}
+	
 }

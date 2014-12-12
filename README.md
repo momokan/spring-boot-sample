@@ -24,5 +24,4 @@ Spring Boot に DB まわりで Doma を採用したサンプル。
 ## TODO
 
  * bean のスコープ設定
- * クラス指定での bean のとりだし
 

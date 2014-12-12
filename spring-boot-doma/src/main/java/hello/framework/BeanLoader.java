@@ -1,4 +1,4 @@
-package hello.config;
+package hello.framework;
 
 import java.util.Map;
 

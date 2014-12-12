@@ -1,7 +1,7 @@
 package hello;
 
-import hello.config.BeanLoader;
 import hello.config.DataSourceConfig;
+import hello.framework.BeanLoader;
 
 import java.util.Arrays;
 

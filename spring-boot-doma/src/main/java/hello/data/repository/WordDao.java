@@ -1,7 +1,7 @@
 package hello.data.repository;
 
-import hello.config.ConfigAutowireable;
 import hello.data.entity.Word;
+import hello.framework.ConfigAutowireable;
 
 import java.util.List;
 
