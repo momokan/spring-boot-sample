@@ -1,6 +1,9 @@
 package hello.config;
 
+import hello.auth.HelloAuthenticationProvider;
+
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -42,11 +45,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		//	認証するユーザー情報をインメモリでもつ
 		//	他にも org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.jdbcAuthentication() を使うと 
 		//	DB にユーザー情報を持てる。
 		auth
-			.inMemoryAuthentication()
-				.withUser("user1").password("pass1").roles("USER");
+			//	認証するユーザー情報をインメモリでもつ
+//			.inMemoryAuthentication()
+//				.withUser("user1").password("pass1").roles("USER");
+			//	ユーザー情報の認証を実装する
+			.authenticationProvider(authenticationProvider());	//	認証ロジックを実装する
+
+	}
+	
+	private AuthenticationProvider authenticationProvider() {
+		return new HelloAuthenticationProvider();
 	}
 }
