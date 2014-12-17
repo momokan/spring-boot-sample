@@ -16,7 +16,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.csrf().disable()	//	CSRF は無効にしておく
+			.csrf().disable()	//	ひとまず CSRF は無効にしておく
 			//	URL への認証の設定
 			.authorizeRequests()
 				//	以下の URL は認証を不要とする
@@ -42,6 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		//	認証するユーザー情報をインメモリでもつ
+		//	他にも org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder.jdbcAuthentication() を使うと 
+		//	DB にユーザー情報を持てる。
 		auth
 			.inMemoryAuthentication()
 				.withUser("user1").password("pass1").roles("USER");
