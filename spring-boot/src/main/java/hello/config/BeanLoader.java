@@ -22,5 +22,8 @@ public class BeanLoader implements ApplicationContextAware {
 	public void setApplicationContext(final ApplicationContext applicationContext) {
 		BeanLoader.applicationContext = applicationContext;
 	}
-
+	
+	public static ApplicationContext getApplicationContext() {
+		return applicationContext;
+	}
 }

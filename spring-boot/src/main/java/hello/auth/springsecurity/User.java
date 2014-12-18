@@ -1,4 +1,4 @@
-package hello.auth;
+package hello.auth.springsecurity;
 
 import java.util.Collection;
 import java.util.List;

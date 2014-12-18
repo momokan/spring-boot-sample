@@ -18,15 +18,5 @@ public class SigninController {
 	public String index(SigninForm signinForm, @RequestParam(value="error", required=false) String error, Model model) {
 		return "hello/signin/index";
 	}
-	
-	/**
-	 *	ログアウト処理
-	 */
-	/*
-	@RequestMapping(value="/signout", method=RequestMethod.POST)
-	public String signout() {
-		return "redirect:/signin";
-	}
-	*/
 
 }

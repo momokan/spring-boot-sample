@@ -1,4 +1,4 @@
-package hello.auth;
+package hello.auth.springsecurity;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -9,8 +9,9 @@
 
 Signin<br />
 
-<div th:if="${param.error}">Invalid username and password.</div>
-<div th:if="${param.signout}">You have been logged out.</div>
+<div th:if="${error}">Invalid username and password.</div>
+<div th:if="${signout}">You have been logged out.</div>
+
 
     <form action="#" th:action="@{/signin}" th:object="${signinForm}" method="post">
       <table>
