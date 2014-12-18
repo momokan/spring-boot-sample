@@ -32,13 +32,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("account")	//	ログイン処理で、ユーザー名をあらわすパラメーター
 //				.defaultSuccessUrl("/private")	//	ログイン処理成功時の遷移先
 //				.failureUrl("/signin?error")	//	ログイン処理失敗時の遷移先
-				.failureHandler(new HelloAuthenticationFailureHandler())	//	ログイン処理失敗時	の処理を独自実装する
+				.failureHandler(new HelloAuthenticationFailureHandler())	//	ログイン処理失敗時の処理を独自実装する
 				.permitAll()
 				.and()	//	更に設定を続ける
 			//	ログアウト処理の設定
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/signout"))	//	ログアウト処理の URL
-				.logoutSuccessUrl("/signin?signout")	//	ログアウト処理成功時の遷移先
+//				.logoutSuccessUrl("/signin?signout")	//	ログアウト処理成功時の遷移先
+				.logoutSuccessHandler(new HelloLogoutSuccessHandler())	//	ログアウト処理成功時	の処理を独自実装する
 				.permitAll();
 	}
 
