@@ -32,6 +32,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("account")	//	ログイン処理で、ユーザー名をあらわすパラメーター
 //				.defaultSuccessUrl("/private")	//	ログイン処理成功時の遷移先
 //				.failureUrl("/signin?error")	//	ログイン処理失敗時の遷移先
+				//	TODO ログイン処理成功時の処理を独自実装する
 				.failureHandler(new HelloAuthenticationFailureHandler())	//	ログイン処理失敗時の処理を独自実装する
 				.permitAll()
 				.and()	//	更に設定を続ける
