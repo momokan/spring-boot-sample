@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  </head>
+  <body>
+   New Word<br />
+
+    <form action="#" th:action="@{/words/create}" th:object="${wordForm}" method="post">
+      <table>
+        <block th:object="${wordForm.word}">
+        <tr>
+          <td>Content:</td>
+          <td><input type="text" th:field="*{content}" /></td>
+          <td th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Content Error</td>
+        </tr>
+        <tr>
+          <td>Type:</td>
+          <td><input type="text" th:field="*{type}" /></td>
+          <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type Error</td>
+        </tr>
+        </block>
+        <tr>
+          <td>Memo:</td>
+          <td><input type="text" th:field="*{memo}" /></td>
+          <td th:if="${#fields.hasErrors('memo')}" th:errors="*{memo}">Memo Error</td>
+        </tr>
+        <tr>
+          <td>Relational Word:</td>
+          <td><input type="text" th:field="*{relationalWord}" /></td>
+          <td th:if="${#fields.hasErrors('relationalWord')}" th:errors="*{relationalWord}">RelationaWord Error</td>
+        </tr>
+        <tr>
+          <td>Relational Word:</td>
+          <td><input type="text" th:field="*{relationalWord}" /></td>
+          <td th:if="${#fields.hasErrors('relationalWord')}" th:errors="*{relationalWord}">RelationaWord Error</td>
+        </tr>
+        <tr>
+          <td>Relational Word:</td>
+          <td><input type="text" th:field="*{relationalWord}" /></td>
+          <td th:if="${#fields.hasErrors('relationalWord')}" th:errors="*{relationalWord}">RelationaWord Error</td>
+        </tr>
+        <tr>
+          <td><button type="submit">Submit</button></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

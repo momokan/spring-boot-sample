@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td>Content</td>
+        <td>Type</td>
+        <td>Hash</td>
+        <td></td>
+      </tr>
+      <tr th:each="word : ${words}">
+        <td th:text="${word.id}">6</td>
+        <td th:text="${word.content}">Dummy</td>
+        <td th:text="${word.type}">1</td>
+        <td th:text="${beans.templateLogic.getHash(word)}">Word@1032</td>
+        <td><a href="#" th:href="@{/word/{content}(content=${word.content})}">Search</a></td>
+      </tr>
+    </table>
+
+    <div><a href="#" th:href="@{/words/create}">New</a></div>
+  </body>
+</html>

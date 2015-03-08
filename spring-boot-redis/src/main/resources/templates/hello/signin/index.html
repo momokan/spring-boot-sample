@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Home</title>
+  <link href="../static/css/base.css" th:href="@{/css/base.css}" rel="stylesheet" media="screen" />
+</head>
+<body>
+
+Signin<br />
+
+<div th:if="${error}">Invalid username and password.</div>
+<div th:if="${signout}">You have been logged out.</div>
+
+
+    <form action="#" th:action="@{/signin}" th:object="${signinForm}" method="post">
+      <table>
+        <tr>
+          <td>Account:</td>
+          <td><input type="text" th:field="*{account}" /></td>
+          <td th:if="${#fields.hasErrors('account')}" th:errors="*{account}">Account Error</td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="password" name="password" th:value="*{password}" /></td>
+          <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+        </tr>
+        <tr>
+          <td><button type="submit">Submit</button></td>
+        </tr>
+      </table>
+    </form>
+
+</body>
+</html>

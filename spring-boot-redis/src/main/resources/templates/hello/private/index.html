@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Home</title>
+  <link href="../static/css/base.css" th:href="@{/css/base.css}" rel="stylesheet" media="screen" />
+</head>
+<body>
+
+Wellcome Private Area!<br />
+<span th:text="${username}">Login user name</span><br />
+Access: <span th:text="${count}">9999</span><br />
+
+<a href="" th:href="@{/signout}">Signout</a>
+
+</body>
+</html>
