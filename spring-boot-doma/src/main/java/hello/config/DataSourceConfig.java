@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 //@EnableJpaRepositories("hello.data.repository")
 public class DataSourceConfig {
-	private static final String	PROPERTIES_KEY_PREFIX = DataSourceAutoConfiguration.CONFIGURATION_PREFIX + ".hello";
+	private static final String	PROPERTIES_KEY_PREFIX = "spring.datasource.hello";
 
 	@Value("${" + PROPERTIES_KEY_PREFIX + ".datadir}")
 	protected String	datadir;
